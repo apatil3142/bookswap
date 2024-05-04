@@ -3,6 +3,9 @@ import Navbar from "./components/Navbar";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Books from "./pages/Books";
 import Chats from "./pages/Chats";
+import SecureRoute from "./SecureRoute";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
 
 const Container = styled.div`
   height: 100vh;
@@ -12,7 +15,7 @@ const Container = styled.div`
 
 const MainContainer = styled.div`
   height: calc(100vh - 60px);
-  overflow-y: scroll;
+  overflow-y: auto;
   background-color: ${({theme}) => theme.extraLight};
   scrollbar-gutter: auto;
   padding: 10px;
@@ -27,7 +30,11 @@ function App() {
           <MainContainer>
             <Routes>
               <Route index path="/" element={<Books />} />
-              <Route path="/chats" element={<Chats />} />
+              <Route element={<SecureRoute/>}>
+                <Route path="/chats" element={<Chats />} /> 
+              </Route>
+              <Route path='/signin' element={<Login />} />
+              <Route path='/signup' element={<Register />} />
             </Routes>
           </MainContainer>
       </Container>
