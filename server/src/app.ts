@@ -1,5 +1,6 @@
 import express, { NextFunction, Request, Response } from 'express';
 import dotenv from 'dotenv';
+import cors from 'cors';
 import mongoose from 'mongoose';
 import cookieParser from 'cookie-parser';
 import authRoute from "./routes/auth";
@@ -19,8 +20,9 @@ const connect = ()=>{
   .catch((err)=>{
       throw err;
   });
-}
+};
 
+app.use(cors());
 app.use(cookieParser())
 app.use(express.json());
 
