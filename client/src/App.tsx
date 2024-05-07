@@ -6,6 +6,7 @@ import Chats from "./pages/Chats";
 import SecureRoute from "./SecureRoute";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import Sale from "./pages/Sale";
 
 const Container = styled.div`
   height: 100vh;
@@ -32,6 +33,7 @@ function App() {
               <Route index path="/" element={<Books />} />
               <Route element={<SecureRoute/>}>
                 <Route path="/chats" element={<Chats />} /> 
+                <Route path='/sale' element={<Sale />} />
               </Route>
               <Route path='/signin' element={<Login />} />
               <Route path='/signup' element={<Register />} />

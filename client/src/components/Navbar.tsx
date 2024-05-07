@@ -1,8 +1,10 @@
-import React from 'react'
 import { useSelector } from 'react-redux';
 import { Link, NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 import { RootState } from '../redux/store';
+import { useCallback } from 'react';
+import { useDispatch } from 'react-redux';
+import { logout } from '../redux/userSlice';
 
 const Container = styled.div`
   height: 60px;
@@ -53,8 +55,29 @@ const MenuItem = styled.div`
   }
 `;
 
+const UserContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+`;
+
+const LogoutBuuton = styled.div`
+  padding: 10px 16px;
+  border-radius: 30px;
+  background-color: ${({theme}) => theme.dark};
+  cursor: pointer;
+  color: #FFF;
+`;
+
 const Navbar = () => {
   const {user} = useSelector((state: RootState) => state.user);
+  const dispatch = useDispatch();
+
+  const handleLogout = useCallback(() => {
+    dispatch(logout());
+  },[dispatch]);
+
   return (
     <Container>
       <Logo>BookSwap</Logo>
@@ -66,7 +89,13 @@ const Navbar = () => {
       <Profile>
         {
           user ? 
-          <UserProfile>{user.name.charAt(0).toUpperCase()}</UserProfile>:
+          <UserContainer>
+            <UserProfile>
+              {user.name.charAt(0).toUpperCase()}
+            </UserProfile>
+            <LogoutBuuton onClick={handleLogout}>Logout</LogoutBuuton>
+          </UserContainer>
+          :
           <></>
         }
       </Profile>

@@ -21,8 +21,21 @@ const connect = ()=>{
       throw err;
   });
 };
+const allowedOrigins = ['http://localhost:5173'];
 
-app.use(cors());
+// Configure CORS options
+const corsOptions = {
+  origin: (origin, callback) => {
+    // Check if the origin is allowed or if it's undefined (for same-origin requests)
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true, // Allow credentials
+};
+app.use(cors(corsOptions));
 app.use(cookieParser())
 app.use(express.json());
 

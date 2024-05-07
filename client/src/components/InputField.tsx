@@ -7,6 +7,17 @@ const Container = styled.div`
   max-width: 500px;
   gap: 6px;
   width: 100%;
+  /* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
 `;
 
 const Input = styled.input`

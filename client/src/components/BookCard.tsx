@@ -22,6 +22,7 @@ const BookImg = styled.img`
   width: 100%;
   aspect-ratio: 16 / 9;
   border-radius: 8px;
+  object-fit: contain;
 `;
 
 const BookDetails = styled.div`

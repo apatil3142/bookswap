@@ -35,3 +35,12 @@ export interface IBook {
   cloudinaryId: string,
   createdAt: string
 }
+
+export interface IAddNewBookPayload {
+  title: string, 
+  abbreviation: string, 
+  amount: number, 
+  city: string, 
+  image: string, 
+  cloudinaryId: string
+}
